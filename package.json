@@ -1,0 +1,123 @@
+{
+  "name": "json-filter-pro",
+  "displayName": "JSON Filter Pro",
+  "description": "Filter and query JSON in VS Code with a simple rules UI, editable query pipelines, and large-file-safe execution.",
+  "keywords": [
+    "json",
+    "json filter",
+    "json query",
+    "jsonquery",
+    "vscode json",
+    "developer tools",
+    "data transformation",
+    "rules engine",
+    "query builder",
+    "data explorer",
+    "large json",
+    "regex filter"
+  ],
+  "version": "0.1.8",
+  "publisher": "doctorjwatson",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/drjwatson/json-filter-pro.git"
+  },
+  "homepage": "https://github.com/drjwatson/json-filter-pro",
+  "bugs": {
+    "url": "https://github.com/drjwatson/json-filter-pro/issues"
+  },
+  "engines": {
+    "vscode": "^1.95.0"
+  },
+  "categories": [
+    "Data Science",
+    "Visualization",
+    "Other"
+  ],
+  "icon": "media/extension-icon.png",
+  "galleryBanner": {
+    "color": "#13293d",
+    "theme": "dark"
+  },
+  "markdown": "github",
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onCommand:jsonFilterPro.openPanelForFile",
+    "onView:jsonFilterPro.rulesView"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "jsonFilterPro.openPanelForFile",
+        "title": "Open JSON Filter Pro",
+        "category": "JSON Filter Pro",
+        "icon": "$(filter)"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "jsonFilterPro.openPanelForFile",
+          "group": "navigation@10",
+          "when": "resourceScheme == file && resourceExtname == .json"
+        }
+      ]
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "jsonFilterPro",
+          "title": "JSON Filter Pro",
+          "icon": "media/json-filter-view.svg"
+        }
+      ]
+    },
+    "views": {
+      "jsonFilterPro": [
+        {
+          "id": "jsonFilterPro.rulesView",
+          "name": "Rules Engine",
+          "type": "webview"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "JSON Filter Pro",
+      "properties": {
+        "jsonFilterPro.largeFileThresholdMb": {
+          "type": "number",
+          "default": 64,
+          "minimum": 1,
+          "maximum": 4096,
+          "description": "Files larger than this are executed in large-file stream mode when possible."
+        },
+        "jsonFilterPro.previewResultLimit": {
+          "type": "number",
+          "default": 500,
+          "minimum": 10,
+          "maximum": 100000,
+          "description": "Maximum number of query results sent to the UI per execution."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "tsc -p ./ --noEmit",
+    "vscode:prepublish": "npm run lint && npm run compile",
+    "package": "npm run lint && npm run compile && vsce package",
+    "package:verify": "vsce ls",
+    "pretest": "npm run lint && npm run compile"
+  },
+  "dependencies": {
+    "@jsonquerylang/jsonquery": "^5.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.2",
+    "@types/vscode": "^1.95.0",
+    "typescript": "^5.6.3",
+    "vsce": "^2.15.0"
+  }
+}

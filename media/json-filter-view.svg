@@ -1,0 +1,5 @@
+<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="JSON Filter Pro">
+  <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M7.5 4.5h-1c-1.105 0-2 .895-2 2V9c0 .83-.448 1.556-1.114 1.949A2.24 2.24 0 0 1 4.5 12.9v2.6c0 1.105.895 2 2 2h1"/>
+  <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M16.5 4.5h1c1.105 0 2 .895 2 2V9c0 .83.448 1.556 1.114 1.949A2.24 2.24 0 0 0 19.5 12.9v2.6c0 1.105-.895 2-2 2h-1"/>
+  <path fill="currentColor" d="M8 6.5C8 5.672 8.672 5 9.5 5h5c.828 0 1.5.672 1.5 1.5 0 .357-.128.703-.36.974L13.5 9.88V16a1 1 0 0 1-1.447.894l-1-.5A1 1 0 0 1 10.5 15.5V9.88L8.36 7.474A1.5 1.5 0 0 1 8 6.5Z"/>
+</svg>
