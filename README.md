@@ -4,9 +4,7 @@ JSON Filter Pro helps you filter and transform JSON files in VS Code without sta
 
 You can build filters visually, run them fast, and edit the generated query when you need advanced control.
 
-<p>
-  <img src="https://raw.githubusercontent.com/drjwatson/json-filter-pro/main/media/example.png" alt="JSON Filter Pro demo" width="320" />
-</p>
+![JSON Filter Pro demo](media/example.png)
 
 ## What this extension does
 
