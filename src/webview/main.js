@@ -10,6 +10,8 @@
     { value: "lte", label: "<=" },
     { value: "in", label: "in" },
     { value: "not in", label: "not in" },
+    { value: "contains", label: "contains" },
+    { value: "not contains", label: "not contains" },
     { value: "exists", label: "exists" },
     { value: "regex", label: "regex" },
     { value: "match", label: "match" },
@@ -402,11 +404,26 @@
     return JSON.stringify(values);
   }
 
+  function escapeRegexLiteral(value) {
+    return String(value || "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  }
+
   function buildRuleExpression(rule) {
     const pathExpr = toPathExpression(rule.path);
 
     if (rule.operator === "exists") {
       return `exists(${pathExpr})`;
+    }
+
+    if (rule.operator === "contains") {
+      const searchTerm = escapeRegexLiteral(rule.value || "");
+      return `regex(${pathExpr}, ${JSON.stringify(searchTerm)}, "i")`;
+    }
+
+    if (rule.operator === "not contains") {
+      const searchTerm = escapeRegexLiteral(rule.value || "");
+      const pattern = `^(?!.*${searchTerm}).+$`;
+      return `regex(${pathExpr}, ${JSON.stringify(pattern)}, "i")`;
     }
 
     if (rule.operator === "regex") {

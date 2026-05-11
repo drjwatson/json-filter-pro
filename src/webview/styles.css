@@ -133,10 +133,20 @@ body {
 
 .filters-card[open] {
   flex: 1.15 1 0;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .pipeline-card[open] {
   flex: 1.05 1 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.query-card[open] {
+  flex: 0.95 1 0;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .results-card[open] {
@@ -145,11 +155,23 @@ body {
   overflow-x: hidden;
 }
 
+.filters-card[open] > .panel-summary,
+.pipeline-card[open] > .panel-summary,
+.query-card[open] > .panel-summary,
 .results-card[open] > .panel-summary {
   position: sticky;
   top: 0;
   z-index: 2;
   background: linear-gradient(135deg, color-mix(in srgb, var(--panel) 86%, #0f2836 14%), var(--panel));
+}
+
+.filters-card[open] > .panel-body,
+.pipeline-card[open] > .panel-body,
+.query-card[open] > .panel-body,
+.results-card[open] > .panel-body {
+  flex: 0 0 auto;
+  min-height: 0;
+  overflow: visible;
 }
 
 .results-body {
@@ -318,7 +340,7 @@ textarea {
 
 .rule-row {
   display: grid;
-  grid-template-columns: minmax(0, 1.45fr) 56px minmax(0, 1fr) minmax(0, 0.55fr) 24px;
+  grid-template-columns: minmax(0, 1.45fr) 88px minmax(0, 1fr) minmax(0, 0.55fr) 24px;
   gap: 4px;
   padding: 4px;
   border: 1px dashed color-mix(in srgb, var(--border) 85%, #89c2d9 15%);
@@ -335,6 +357,11 @@ textarea {
 
 .rule-operator {
   text-align: center;
+}
+
+.rule-row [data-action="removeRule"] {
+  grid-column: 5;
+  justify-self: end;
 }
 
 .hidden {
@@ -562,7 +589,7 @@ textarea {
 
 @media (max-width: 520px) {
   .rule-row {
-    grid-template-columns: minmax(0, 1.35fr) 50px minmax(0, 0.95fr) minmax(0, 0.55fr) 24px;
+    grid-template-columns: minmax(0, 1.35fr) 76px minmax(0, 0.95fr) minmax(0, 0.55fr) 24px;
   }
 
   .pipeline-row {
