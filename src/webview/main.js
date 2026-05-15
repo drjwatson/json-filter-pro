@@ -182,7 +182,7 @@
       step.keys = Array.isArray(step.keys) ? step.keys.filter((key) => keySet.has(key)) : [];
 
       if (!keySet.has(step.keyToAdd)) {
-        step.keyToAdd = fallbackPath;
+        step.keyToAdd = "";
       }
     }
   }
@@ -199,11 +199,10 @@
   }
 
   function createDefaultPipelineStep() {
-    const scopedKeys = getScopedAvailableKeys();
     return {
       id: makeId("step"),
       mode: "includeKeys",
-      keyToAdd: scopedKeys[0] || "",
+      keyToAdd: "",
       keys: [],
       functionName: "map",
       args: ""
@@ -590,8 +589,8 @@
       return '<option value="" selected disabled>No keys detected</option>';
     }
 
-    const options = [];
-    const selectedPath = step.keyToAdd && keys.includes(step.keyToAdd) ? step.keyToAdd : keys[0];
+    const selectedPath = step.keyToAdd && keys.includes(step.keyToAdd) ? step.keyToAdd : "";
+    const options = [`<option value="" ${selectedPath ? "" : "selected"}>Select key...</option>`];
 
     for (const keyPath of keys) {
       const selected = selectedPath === keyPath ? "selected" : "";
@@ -707,14 +706,8 @@
       return;
     }
 
-    const scopedKeys = getScopedAvailableKeys();
-
     pipelineRows.innerHTML = state.pipelineSteps
       .map((step) => {
-        if (step.mode === "includeKeys" && !step.keyToAdd && scopedKeys.length > 0) {
-          step.keyToAdd = scopedKeys[0];
-        }
-
         const includeMode = step.mode === "includeKeys";
         const mainMarkup = includeMode
           ? `

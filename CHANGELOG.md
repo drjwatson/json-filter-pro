@@ -2,6 +2,12 @@
 
 All notable changes to this project are documented in this file.
 
+## [0.1.10] - 2026-05-15
+
+### Fixed
+
+- Fixed Output step behavior in **Include Keys** mode so selecting the first key now adds it correctly.
+
 ## [0.1.9] - 2026-05-11
 
 ### Added
